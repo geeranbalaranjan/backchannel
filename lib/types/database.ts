@@ -76,6 +76,13 @@ export interface MessageReaction {
   created_at: string;
 }
 
+export interface LectureSessionSecret {
+  id: string;
+  session_id: string;
+  join_secret: string;
+  created_at: string;
+}
+
 export interface ModerationAction {
   id: string;
   course_id: string;
@@ -103,6 +110,7 @@ export interface Database {
       courses: { Row: Course; Insert: Omit<Course, "id">; Update: Partial<Course> };
       course_members: { Row: CourseMember; Insert: Omit<CourseMember, "id">; Update: Partial<CourseMember> };
       lecture_sessions: { Row: LectureSession; Insert: Omit<LectureSession, "id">; Update: Partial<LectureSession> };
+      lecture_session_secrets: { Row: LectureSessionSecret; Insert: Omit<LectureSessionSecret, "id">; Update: Partial<LectureSessionSecret> };
       messages: { Row: Message; Insert: Omit<Message, "id">; Update: Partial<Message> };
       message_votes: { Row: MessageVote; Insert: Omit<MessageVote, "id">; Update: Partial<MessageVote> };
       message_reactions: { Row: MessageReaction; Insert: Omit<MessageReaction, "id">; Update: Partial<MessageReaction> };
