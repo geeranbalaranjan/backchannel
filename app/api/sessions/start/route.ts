@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireInstructor } from "@/lib/auth-helpers";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createServiceRoleClient } from "@/lib/supabase/server";
 import { randomBytes } from "crypto";
 
 export async function POST(request: Request) {
@@ -13,6 +13,8 @@ export async function POST(request: Request) {
     const joinSecret = randomBytes(32).toString("hex");
 
     const supabase = await createClient();
+    const serviceClient = createServiceRoleClient();
+
     const { data: session, error } = await supabase
       .from("lecture_sessions")
       .insert({
@@ -25,6 +27,16 @@ export async function POST(request: Request) {
       .select("id, course_id, starts_at, is_active")
       .single();
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+    const { error: secretError } = await serviceClient
+      .from("lecture_session_secrets")
+      .insert({
+        session_id: session.id,
+        join_secret: joinSecret,
+      });
+    if (secretError) {
+      console.error("Failed to insert session secret:", secretError.message);
+    }
 
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? (request.headers.get("x-forwarded-host") ? `https://${request.headers.get("x-forwarded-host")}` : "http://localhost:3000");
     const joinUrl = `${baseUrl}/join/${session.id}?token=${joinSecret}`;
