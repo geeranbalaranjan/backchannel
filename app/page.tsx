@@ -12,12 +12,12 @@ export default function Home() {
           Live chat for your class. Join with a QR code, pick a pseudonym, ask questions, and react in real time. Instructors see identities; students stay anonymous.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Button asChild size="lg">
-            <Link href="/login">Sign in</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/instructor">Instructor dashboard</Link>
-          </Button>
+          <Link href="/login">
+            <Button size="lg">Sign in</Button>
+          </Link>
+          <Link href="/instructor">
+            <Button variant="outline" size="lg">Instructor dashboard</Button>
+          </Link>
         </div>
         <p className="text-sm text-muted-foreground">
           Instructors: sign in to create courses and start sessions. Students: scan the QR from your instructor to join.
