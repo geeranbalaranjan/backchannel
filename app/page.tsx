@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
@@ -12,12 +13,12 @@ export default function Home() {
           Live chat for your class. Join with a QR code, pick a pseudonym, ask questions, and react in real time. Instructors see identities; students stay anonymous.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Button asChild size="lg">
-            <Link href="/login">Sign in</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/instructor">Instructor dashboard</Link>
-          </Button>
+          <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+            Sign in
+          </Link>
+          <Link href="/instructor" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
+            Instructor dashboard
+          </Link>
         </div>
         <p className="text-sm text-muted-foreground">
           Instructors: sign in to create courses and start sessions. Students: scan the QR from your instructor to join.
