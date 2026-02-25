@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -13,11 +12,11 @@ export default function Home() {
           Live chat for your class. Join with a QR code, pick a pseudonym, ask questions, and react in real time. Instructors see identities; students stay anonymous.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
-            Sign in
+          <Link href="/login">
+            <Button size="lg">Sign in</Button>
           </Link>
-          <Link href="/instructor" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
-            Instructor dashboard
+          <Link href="/instructor">
+            <Button variant="outline" size="lg">Instructor dashboard</Button>
           </Link>
         </div>
         <p className="text-sm text-muted-foreground">

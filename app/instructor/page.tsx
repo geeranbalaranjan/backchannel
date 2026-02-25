@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CreateCourseForm } from "./create-course-form";
 
 export default async function InstructorDashboardPage() {
   const supabase = await createClient();
@@ -65,5 +66,3 @@ export default async function InstructorDashboardPage() {
     </div>
   );
 }
-
-import { CreateCourseForm } from "./create-course-form";
